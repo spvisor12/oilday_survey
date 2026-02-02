@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>오일데이 양자택일 설문</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1230;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --line:rgba(255,255,255,.14);
+      --shadow:0 22px 60px rgba(0,0,0,.55);
+      --r:20px;
+      --a1:#7C5CFF;
+      --a2:#19D3FF;
+      --a3:#FFB224;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 18% 10%, rgba(124,92,255,.28), transparent 60%),
+        radial-gradient(800px 560px at 80% 20%, rgba(25,211,255,.22), transparent 55%),
+        radial-gradient(900px 650px at 40% 92%, rgba(255,178,36,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    .wrap{
+      min-height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px 16px;
+    }
+    .card{
+      width:min(920px,100%);
+      border-radius:var(--r);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      overflow:hidden;
+    }
+    .grid{display:grid;grid-template-columns:1.15fr .85fr}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+    .left{padding:36px 28px}
+    .right{
+      padding:28px;
+      border-left:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    @media (max-width:860px){
+      .right{border-left:none;border-top:1px solid rgba(255,255,255,.10)}
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:9px 12px;border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--muted);font-weight:700;font-size:13px;
+    }
+    .dot{
+      width:9px;height:9px;border-radius:50%;
+      background:linear-gradient(135deg,var(--a2),var(--a1));
+      box-shadow:0 0 0 6px rgba(25,211,255,.10);
+    }
+    h1{
+      margin:16px 0 10px;
+      font-size:clamp(24px,3.6vw,40px);
+      line-height:1.12;
+      letter-spacing:-.7px;
+    }
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.65;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
+    .chip{
+      padding:9px 11px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      font-size:13px;font-weight:700;
+    }
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      border:none;cursor:pointer;
+      font-weight:900;
+      padding:13px 16px;border-radius:14px;
+      color:#081018;
+      background:linear-gradient(135deg,var(--a2),var(--a1));
+      box-shadow:0 14px 34px rgba(124,92,255,.28);
+    }
+    .ghost{
+      color:#fff;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:none;
+    }
+    .panel{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.14);
+      padding:16px;margin-bottom:12px;
+    }
+    .panel h3{margin:0 0 6px;font-size:13px}
+    .panel p{margin:0;font-size:13px;line-height:1.6;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <main class="card">
+    <section class="grid">
+      <div class="left">
+        <div class="badge"><span class="dot"></span> 카카오톡 공유용 · 10초 설문</div>
+        <h1>오일데이 메뉴 운영 방식<br/>양자택일 설문</h1>
+        <p class="sub">
+          오일데이 메뉴(알리오올리오·봉골레)의 운영 방식을
+          <b>단순 유지</b> 또는 <b>옵션/세트 도입</b> 중 하나로 선택해주세요.
+        </p>
+
+        <div class="chips">
+          <span class="chip">선택지 2개</span>
+          <span class="chip">익명 응답</span>
+          <span class="chip">즉시 집계</span>
+        </div>
+
+        <div class="ctaRow">
+          <button class="btn" id="openSurvey">설문 참여하기</button>
+          <button class="btn ghost" id="copyLink">링크 복사</button>
+        </div>
+      </div>
+
+      <aside class="right">
+        <div class="panel">
+          <h3>설문 내용</h3>
+          <p>
+            Q. 오일데이 메뉴 운영 방식 중 더 적절한 안은?<br>
+            ① 옵션 없이 단일 메뉴 유지<br>
+            ② 토핑 옵션 및 사이드/음료 세트 추가
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>활용 목적</h3>
+          <p>객단가 개선 및 운영 구조 의사결정 참고</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+</div>
+
+<!-- Typeform -->
+<script src="https://unpkg.com/@typeform/embed@latest/dist/embed.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@typeform/embed@latest/dist/embed.css" />
+
+<script>
+  const FORM_ID = "DZh1rBal";
+
+  const popup = window.typeformEmbed.makePopup(
+    `https://form.typeform.com/to/${FORM_ID}`,
+    {
+      hideHeaders: true,
+      hideFooter: true,
+      autoClose: true,
+      medium: "kakao-notion"
+    }
+  );
+
+  document.getElementById("openSurvey").onclick = () => popup.open();
+
+  document.getElementById("copyLink").onclick = async () => {
+    const url = `https://form.typeform.com/to/${FORM_ID}`;
+    try{
+      await navigator.clipboard.writeText(url);
+      alert("설문 링크가 복사되었습니다.");
+    }catch{
+      prompt("아래 링크를 복사하세요:", url);
+    }
+  };
+</script>
+</body>
+</html>
