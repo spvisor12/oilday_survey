@@ -92,16 +92,26 @@
       font-size:13px;font-weight:700;
     }
     .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
+    /* 버튼 공통 스타일 (a, button 둘 다 적용) */
     .btn{
-      border:none;cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      cursor:pointer;
       font-weight:900;
-      padding:13px 16px;border-radius:14px;
+      padding:13px 16px;
+      border-radius:14px;
       color:#081018;
       background:linear-gradient(135deg,var(--a2),var(--a1));
       box-shadow:0 14px 34px rgba(124,92,255,.28);
+      border:none;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
     }
     .ghost{
-      color:#fff;background:rgba(255,255,255,.06);
+      color:#fff;
+      background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.16);
       box-shadow:none;
     }
@@ -135,8 +145,12 @@
         </div>
 
         <div class="ctaRow">
-          <button class="btn" id="openSurvey">설문 참여하기</button>
-          <button class="btn ghost" id="copyLink">링크 복사</button>
+          <!-- ✅ 팝업 대신: Typeform 설문 페이지로 "직접 이동" (카카오 인앱 브라우저에서 100% 안정) -->
+          <a class="btn" href="https://form.typeform.com/to/DZh1rBal" target="_blank" rel="noopener">
+            설문 참여하기
+          </a>
+
+          <button class="btn ghost" id="copyLink" type="button">링크 복사</button>
         </div>
       </div>
 
@@ -159,27 +173,10 @@
   </main>
 </div>
 
-<!-- Typeform -->
-<script src="https://unpkg.com/@typeform/embed@latest/dist/embed.umd.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@typeform/embed@latest/dist/embed.css" />
-
 <script>
-  const FORM_ID = "DZh1rBal";
-
-  const popup = window.typeformEmbed.makePopup(
-    `https://form.typeform.com/to/${FORM_ID}`,
-    {
-      hideHeaders: true,
-      hideFooter: true,
-      autoClose: true,
-      medium: "kakao-notion"
-    }
-  );
-
-  document.getElementById("openSurvey").onclick = () => popup.open();
-
+  // ✅ 링크 복사만 남김 (카카오 환경에서 clipboard가 막힐 수 있어 fallback 포함)
   document.getElementById("copyLink").onclick = async () => {
-    const url = `https://form.typeform.com/to/${FORM_ID}`;
+    const url = "https://form.typeform.com/to/DZh1rBal";
     try{
       await navigator.clipboard.writeText(url);
       alert("설문 링크가 복사되었습니다.");
