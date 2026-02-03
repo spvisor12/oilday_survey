@@ -92,7 +92,6 @@
       font-size:13px;font-weight:700;
     }
     .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
-    /* 버튼 공통 스타일 (a, button 둘 다 적용) */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -145,8 +144,8 @@
         </div>
 
         <div class="ctaRow">
-          <!-- ✅ 팝업 대신: Typeform 설문 페이지로 "직접 이동" (카카오 인앱 브라우저에서 100% 안정) -->
-          <a class="btn" href="https://form.typeform.com/to/DZh1rBal" target="_blank" rel="noopener">
+          <!-- ✅ 최신 Typeform 링크로 교체 -->
+          <a class="btn" href="https://form.typeform.com/to/lZE3wdTN" target="_blank" rel="noopener">
             설문 참여하기
           </a>
 
@@ -174,9 +173,8 @@
 </div>
 
 <script>
-  // ✅ 링크 복사만 남김 (카카오 환경에서 clipboard가 막힐 수 있어 fallback 포함)
   document.getElementById("copyLink").onclick = async () => {
-    const url = "https://form.typeform.com/to/DZh1rBal";
+    const url = "https://form.typeform.com/to/lZE3wdTN";
     try{
       await navigator.clipboard.writeText(url);
       alert("설문 링크가 복사되었습니다.");
